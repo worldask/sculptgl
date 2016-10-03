@@ -29,6 +29,9 @@ class GuiFiles {
     menu.addTitle(TR('fileExportMeshTitle'));
     menu.addButton(TR('fileExportPLY'), this, 'saveFileAsPLY');
     menu.addButton(TR('fileExportSTL'), this, 'saveFileAsSTL');
+
+    menu.addTitle(TR('3DprintTitle'));
+    menu.addButton(TR('exportMaterialise'), this, 'exportMaterialise');
   }
 
   addFile() {
@@ -111,6 +114,22 @@ class GuiFiles {
       this.saveFileAsOBJ(event.altKey);
       event.handled = true;
     }
+  }
+
+  exportMaterialise() {
+    var mesh = this._main.getMesh();
+    if (!mesh)
+      return;
+
+    var ctrlNotif = this._ctrlGui.getWidgetNotification();
+    if (this._materialiseXHR && ctrlNotif.materialise === true) {
+      if (!window.confirm(TR('materialiseAbort')))
+        return;
+      ctrlNotif.sketchfab = false;
+      this._materialiseXHR.abort();
+    }
+    var toolID = '20cc0fd6-3cef-4111-a201-0b87026d892c';
+    this._materialiseXHR = Export.exportMaterialise(this._main, toolID, ctrlNotif);
   }
 }
 

@@ -13,7 +13,9 @@ Export.exportOBJ = function (meshes, saveColor) {
     data += 'o mesh_' + i + '\n';
     data = Export.addMesh(meshes[i], data, offsets, saveColor);
   }
-  return new Blob([data]);
+  return new Blob([data], {
+    type: 'application/octet-stream'
+  });
 };
 
 var appendString = function (buffer, str, it) {
@@ -72,7 +74,7 @@ Export.addMesh = function (mesh, data, offsets, saveColor) {
   ////////////////
   // COLORS-zbrush
   ////////////////
-  if (!saveColor) {
+  if (!saveColor && false) {
     // zbrush-like vertex color
     var nbChunck = Math.ceil(nbVertices / 64);
     for (i = 0; i < nbChunck; ++i) {

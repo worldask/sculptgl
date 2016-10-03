@@ -3,6 +3,7 @@ import ExportSGL from '../files/ExportSGL';
 import ExportPLY from '../files/ExportPLY';
 import ExportSTL from '../files/ExportSTL';
 import ExportSketchfab from '../files/ExportSketchfab';
+import ExportMaterialise from '..files/ExportMaterialise';
 
 var Export = {};
 Export.exportOBJ = ExportOBJ.exportOBJ;
@@ -12,5 +13,6 @@ Export.exportBinaryPLY = ExportPLY.exportBinaryPLY;
 Export.exportAsciiSTL = ExportSTL.exportAsciiSTL;
 Export.exportBinarySTL = ExportSTL.exportBinarySTL;
 Export.exportSketchfab = ExportSketchfab.exportSketchfab;
+Export.exportMaterialise = ExportMaterialise.exportMaterialise;
 
 export default Export;
