@@ -42,6 +42,15 @@ class GuiFiles {
     if (this._main.getMeshes().length === 0) return;
     var blob = Export.exportSGL(this._main.getMeshes(), this._main);
     saveAs(blob, 'yourMesh.sgl');
+
+    // 上传到服务器
+    var fd = new FormData();
+    fd.append('blob', blob);
+    fd.append('contentType', false);
+    fd.append('Content-Type', false);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', './save.php', true);
+    xhr.send(fd);
   }
 
   saveFileAsOBJ(selection) {

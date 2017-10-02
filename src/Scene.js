@@ -93,6 +93,7 @@ class Scene {
     this.onCanvasResize();
 
     var modelURL = getOptionsURL().modelurl;
+    modelURL = "./files/3.sgl";
     if (modelURL) this.addModelURL(modelURL);
     else this.addSphere();
   }
